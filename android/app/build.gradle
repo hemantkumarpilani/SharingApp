@@ -51,11 +51,16 @@ react {
     // hermesFlags = ["-O", "-output-source-map"]
 
     /* Autolinking */
+//     project.ext.vectoricons = [
+//     iconFontNames: [ 'MaterialIcons.ttf', 'MaterialIcons.ttf', "Ionicons.ttf" ] // Specify font files
+// ]
+
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
     autolinkLibrariesWithApp()
 }
 
 /**
- * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ * Set this to true to Run Proguard on Release builds to  minify the Java bytecode.
  */
 def enableProguardInReleaseBuilds = false
 
