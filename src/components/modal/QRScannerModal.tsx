@@ -124,7 +124,7 @@ const QRScannerModal: FC<ModalProps> = ({onClose, visible}) => {
                   />
                 </View>
               ) : (
-                <View>
+                <View style={modalStyles.skeleton}>
                   <Camera
                     style={modalStyles.camera}
                     isActive={visible}

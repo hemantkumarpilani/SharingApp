@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   Platform,
+  FlatList,
 } from 'react-native';
 import React, {FC, useEffect, useState} from 'react';
 import {useTCP} from '../service/TCPProvider';
@@ -15,7 +16,6 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {connectionStyles} from '../styles/connectionStyles';
 import CustomText from '../components/global/CustomText';
 import Options from '../components/home/Options';
-import {FlatList} from 'react-native-gesture-handler';
 import {formatFileSize} from '../utils/libraryHelpers';
 import {Colors} from '../utils/Constants';
 import ReactNativeBlobUtil from 'react-native-blob-util';
@@ -90,6 +90,7 @@ const ConnectionScreen: FC = () => {
   };
 
   const renderItem = ({item}: any) => {
+    console.log('renderItem renderItem', item);
     return (
       <View style={connectionStyles.fileItem}>
         <View style={connectionStyles.fileInfoContainer}>

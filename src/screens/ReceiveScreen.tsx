@@ -32,7 +32,7 @@ const ReceiveScreen = () => {
     }
 
     setQrValue(`tcp://${ip}:${port}|${deviceName}`);
-    console.log(`Server info : ${ip}: ${port}`);
+    console.log(`Server info received screen : ${ip}:${port}`);
   };
 
   const sendDiscoverySignal = async () => {

@@ -37,7 +37,9 @@ export const receivedFileAck = async (
   try {
     await new Promise(resolve => setTimeout(resolve, 10));
     console.log('File received 🥂');
-    socket.write(JSON.stringify({event: 'send_chunk_ack', chunkNo: 0}));
+    // socket.write(JSON.stringify({event: 'send_chunk_ack', chunkNo: 0}));
+    socket.write(JSON.stringify({event: 'send_chunk_ack', chunkNo: 0}) + '\n');
+
     console.log('Requested for first chunk 🔵');
   } catch (error) {
     console.error('Error sending file', error);
@@ -66,13 +68,21 @@ export const sendChunkAck = async (
 
   try {
     await new Promise(resolve => setTimeout(resolve, 10));
+    // socket.write(
+    //   JSON.stringify({
+    //     event: 'receive_chunk_ack',
+    //     chunk: currentChunkSet?.chunkArray[chunkIndex].toString('base64'),
+    //     chunkNo: chunkIndex,
+    //   }),
+    // );
     socket.write(
       JSON.stringify({
         event: 'receive_chunk_ack',
         chunk: currentChunkSet?.chunkArray[chunkIndex].toString('base64'),
         chunkNo: chunkIndex,
-      }),
+      }) + '\n',
     );
+
     setTotalSentBytes(
       (prev: number) => prev + currentChunkSet?.chunkArray[chunkIndex].length,
     );
@@ -138,8 +148,12 @@ export const receiveChunkAck = async (
   try {
     await new Promise(resolve => setTimeout(resolve, 10));
     console.log('Requested for next chunkk ⬇', chunkNo + 1);
+    // socket.write(
+    //   JSON.stringify({event: 'send_chunk_ack', chunkNo: chunkNo + 1}),
+    // );
+
     socket.write(
-      JSON.stringify({event: 'send_chunk_ack', chunkNo: chunkNo + 1}),
+      JSON.stringify({event: 'send_chunk_ack', chunkNo: chunkNo + 1}) + '\n',
     );
   } catch (error) {
     console.error('Error sending file', error);
